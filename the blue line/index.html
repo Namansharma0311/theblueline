@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Blue Line</title>
+    <link rel="stylesheet" href="theblueline.css">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="blueline.jpg" alt="Logo" class="logo">
+        <h2>THE BLUE LINE</h2>
+        <p>By Aqua Gaurd</p>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#login">Login</a></li>
+            <li><a href="#map">Polluted Rivers Map</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <section id="home">
+            <h1>Welcome to The Blue Line</h1>
+            <table class="info-table">
+                <tr>
+                    <td>Discover the purity of water with our advanced filtration systems. At The Blue Line, we provide top-quality water solutions to ensure your health and well-being.</td>
+                </tr>
+                <tr>
+                    <td>Our products are designed for homes, offices, and industries, offering clean, safe water every time.</td>
+                </tr>
+            </table>
+        </section>
+        <section id="about">
+            <h1>About Us</h1>
+            <table class="info-table">
+                <tr>
+                    <td>We are a leading company in water purification technology, committed to delivering innovative solutions for clean water. Founded with a vision to make pure water accessible to everyone, our team of experts works tirelessly to develop cutting-edge products.</td>
+                </tr>
+                <tr>
+                    <td>Our mission is to improve water quality worldwide, and our values include sustainability, quality, and customer satisfaction.</td>
+                </tr>
+            </table>
+        </section>
+        <section id="login">
+            <h1>Login to Your Account</h1>
+            <p>Access your personalized dashboard to manage your orders and preferences.</p>
+            <form action="/login" method="post">
+                <label for="username">Email:</label>
+                <input type="email" id="username" name="username" placeholder="Enter your email">
+                <input type="submit" value="Send OTP">
+            </form>
+            <p style="margin-top: 15px;">Don't have an account? <a href="#" style="color: #1a237e;">Sign up here</a>.</p>
+        </section>
+        <section id="map">
+            <h1>Map of Polluted Rivers</h1>
+            <div id="map" style="height: 400px; width: 100%;"></div>
+        </section>
+    </div>
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: {lat: 25.3176, lng: 82.9739} // Example location for Ganges river near factories
+            });
+            var marker = new google.maps.Marker({
+                position: {lat: 25.3176, lng: 82.9739},
+                map: map,
+                title: 'Polluted River'
+            });
+            var infowindow = new google.maps.InfoWindow({
+                content: 'High toxicity due to factory pollution near this river.'
+            });
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+            });
+        }
+    </script>
+</body>
+</html>
